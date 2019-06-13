@@ -1,14 +1,28 @@
-/* becode/javascript
- *
- * /09-misc/04-worst-ui-two/script.js - 9.4: la pire interface (2) : phone clicker
- *
- * coded by leny@BeCode
- * started at 26/10/2018
- */
-
-// NOTE: don't focus on the existing code structure for now.
-// You will have time to focus on it later.
-
 (() => {
-    // your code here
-})();
+    let target = document.getElementById('target');
+    let btns = document.getElementsByTagName('button');
+    function insertText(content,where,str){
+        return content.substr(0,where) + str + content.substr(where + str.length,content.length);
+    } 
+    
+    for(let i = 0; i < btns.length;i++){
+        let value = btns[i];
+        value.addEventListener ('click' , () => {
+            let min = value.getAttribute("data-min");
+            let max = value.getAttribute("data-max");
+            value.innerText++
+            if (value.innerText<10){
+                value.innerText = '0' + value.innerText++
+            }
+            
+            if (value.innerText == max){
+                value.innerText=min
+            }
+            let index = 1;
+            for(let j = 0; j < i;j++){
+                index += btns[j].innerText.length;
+            }
+            target.innerText = insertText(target.innerText,index,value.innerText);
+        })          
+    }
+})()

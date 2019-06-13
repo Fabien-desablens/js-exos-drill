@@ -1,14 +1,46 @@
-/* becode/javascript
- *
- * /09-misc/05-worst-ui-three/script.js - 9.5: la pire interface (3) : phone slot
- *
- * coded by leny@BeCode
- * started at 26/10/2018
- */
-
-// NOTE: don't focus on the existing code structure for now.
-// You will have time to focus on it later.
-
 (() => {
-    // your code here
+    const one = document.getElementById('part-one');
+    const btnOne = document.getElementById('fix-part-one');
+    const two = document.getElementById('part-two');
+    const btnTwo = document.getElementById('fix-part-two');
+    const three = document.getElementById('part-three');
+    const btnThree = document.getElementById('fix-part-three');
+    const four = document.getElementById('part-four');
+    const btnFour = document.getElementById('fix-part-four');
+    const target = document.getElementById('target')
+
+    const btns = [one,two,three,four]
+
+    setInterval(() => {
+        for(let i = 0; i < btns.length;i++){
+            let min = btns[i].getAttribute("data-min");
+            let max = btns[i].getAttribute("data-max");
+            if(btns[i].value  == max){
+                btns[i].value = min
+            }else{
+                btns[i].value++;
+            }
+            if (btns[i].value<10){
+                btns[i].value='0'+ btns[i].value
+            }
+        }
+        
+    },200)
+
+    function insertText(content,where,str){
+        return content.substr(0,where) + str + content.substr(where + str.length,content.length);
+    }
+
+    btnOne.addEventListener ('click' , () =>  {
+        target.innerText = insertText(target.innerText,1,one.value);
+    })
+    btnTwo.addEventListener ('click' , () => {
+        target.innerHTML = insertText(target.innerText,1 + one.value.length,two.value);
+    })
+    btnThree.addEventListener ('click' , () => {
+        target.innerHTML = insertText(target.innerText,1 + one.value.length+two.value.length,three.value);
+    })
+    btnFour.addEventListener ('click' , () => {
+        target.innerHTML = insertText(target.innerText,1 + one.value.length+two.value.length+three.value.length,three.value);
+    })
 })();

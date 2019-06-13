@@ -4,7 +4,6 @@
 
     slider.addEventListener('mousemove',() => {
         const value = slider.value
-        console.log(value)
         target.innerText = '+' + value
     })
 })();

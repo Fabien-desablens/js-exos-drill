@@ -10,5 +10,22 @@
 // You will have time to focus on it later.
 
 (() => {
-    // your code here
+    let number = Math.round(Math.random()*100)
+    console.log(number);
+    justeprix()  
+    function justeprix(){
+        let ask = window.prompt('Donne un nombre de 0 à 100')
+        if (ask==number){
+            window.alert('Bravo vous avez réussi')
+            break;
+        }
+        if (ask<=number){
+            window.alert("C'est plus");
+            ask = window.prompt('')
+        }
+        if (ask>=number){
+            window.alert("C'est moins");
+            ask = window.prompt('')
+        }
+    }      
 })();
