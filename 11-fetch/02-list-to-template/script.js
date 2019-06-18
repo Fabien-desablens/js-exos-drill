@@ -1,14 +1,29 @@
-/* becode/javascript
- *
- * /11-fetch/02-list-to-template/script.js - 11.2: liste vers template
- *
- * coded by leny@BeCode
- * started at 12/05/2019
- */
-
-// NOTE: don't focus on the existing code structure for now.
-// You will have time to focus on it later.
-
 (() => {
-    // your code here
+    let template = document.getElementById("tpl-hero").content
+    let target = document.getElementById("target");
+
+    document.getElementById('run').addEventListener("click",() => {
+        console.log(name);
+
+        fetch("http://localhost:3000/heroes").then(blob => {
+            console.log(blob)
+            return blob.json()
+        }).then(value => {
+            value.forEach(element => {
+                let clone = template.cloneNode(true);
+
+                let name = clone.querySelector(".name");
+                let alterEgo = clone.querySelector(".alter-ego");
+                let abilities = clone.querySelector(".powers");
+
+                name.innerText = element.name;
+                alterEgo.innerText = element.alterEgo;
+                abilities.innerText = element.abilities;
+
+                target.appendChild(clone)
+            });  
+        }).catch(function (err){ // Si la promesse ne s'execute pas correctement
+            console.log("Il y a une erreur", err); // Tu log dans la console qu'il y a eu une erreur et tu ajoute l'erreur
+        });
+    })
 })();

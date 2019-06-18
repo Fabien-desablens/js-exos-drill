@@ -1,14 +1,12 @@
-/* becode/javascript
- *
- * /11-fetch/01-list-to-console/script.js - 11.1: liste vers console
- *
- * coded by leny@BeCode
- * started at 12/05/2019
- */
-
-// NOTE: don't focus on the existing code structure for now.
-// You will have time to focus on it later.
 
 (() => {
-    // your code here
+    document.querySelector('#run').addEventListener('click', function() {
+        fetch("http://localhost:3000/heroes").then(function(response) { // On utilise la methode "Fetch" pour appeler l'API , .then est utilisé pour acceder au resultat d'une promesse
+        return response.json(); // La méthode json() de Body lit un Stream Response jusqu'au bout. Elle retourne une promesse qui se résout en renvoyant le corps de la requête en JSON.
+        }).then(function(res) { // Si la promesse est executé
+                console.log(res); // Tu log dans la console res , res represente le resultat de la fonction qui appel localhost
+        }).catch(function (err){ // Si la promesse ne s'execute pas correctement
+                console.log("Il y a une erreur", err); // Tu log dans la console qu'il y a eu une erreur et tu ajoute l'erreur
+        });
+        });
 })();
